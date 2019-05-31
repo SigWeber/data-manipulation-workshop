@@ -1,3 +1,6 @@
+delete_merged_file: true
+book_filename: data_manipulation_with_R.Rmd
+
 rmd_files:
   - index.Rmd
   - intro.Rmd
