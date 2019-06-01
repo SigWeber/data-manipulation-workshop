@@ -9,5 +9,6 @@ output:
       sharing:
         facebook: false
         twitter: false
+        all: []
   bookdown::pdf_book: default
 ---
