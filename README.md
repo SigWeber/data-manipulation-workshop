@@ -1,7 +1,7 @@
-This is a minimal bookdown example. Although you see a few files here, only `index.Rmd` is required. All other files are optional, but `bookdown-minimal.Rproj` can make it much easier to build the book.
+# Data manipulation in R
 
-The key is the `site` setting in `index.Rmd`. If you want to build the book in RStudio, just click the `Build Book` button in the `Build` pane, otherwise call the function in R:
+## Acknowledgments
+The content of this data workshop is based on:
 
-```r
-bookdown::render_book('index.Rmd', 'all')
-```
+Introduction to dplyr https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html 
+Hands-on dplyr tutorial for faster data manipulation in R: https://www.r-bloggers.com/hands-on-dplyr-tutorial-for-faster-data-manipulation-in-r/
