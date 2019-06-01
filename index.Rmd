@@ -4,6 +4,10 @@ author: "Sigrid Weber"
 site: bookdown::bookdown_site
 documentclass: book
 output:
-  bookdown::gitbook: default
+  bookdown::gitbook:
+    config:
+      sharing:
+        facebook: false
+        twitter: false
   bookdown::pdf_book: default
 ---
