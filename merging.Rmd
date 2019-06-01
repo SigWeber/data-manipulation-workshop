@@ -1,0 +1,166 @@
+# Merging Datasets
+
+Let's start by loading the `tidyverse` package
+
+```{r message = FALSE}
+library(tidyverse)
+```
+
+```{r echo = FALSE, message = FALSE}
+library(gridExtra)
+library(RColorBrewer)
+```
+
+Clear everything to make sure there's nothing leftover in our environment
+
+```{r}
+rm(list = ls())
+```
+
+```{r echo = FALSE}
+source("R/draw_table.R")
+```
+
+Next, we load three datasets of universities, cities, and states.
+
+```{r message=FALSE}
+universities <- read_csv("https://raw.githubusercontent.com/SigWeber/data_manipulation_with_R//master/data/universities.csv")
+cities <- read_csv("https://raw.githubusercontent.com/SigWeber/data_manipulation_with_R//master/data/cities.csv")
+states <- read_csv("https://raw.githubusercontent.com/SigWeber/data_manipulation_with_R//master/data/states.csv")
+```
+
+Let's see how we can merge the `universities` dataset with the `cities` dataset.
+
+```{r echo = FALSE, fig.height = 2, fig.width = 8}
+grid.arrange(draw_table(universities, "universities"), draw_table(cities, "cities"), ncol = 2)
+```
+
+## Left Join
+
+```{r results = 'hide'}
+universities %>%
+  left_join(cities, by = "city")
+```
+
+```{r echo = FALSE, fig.height = 2, fig.width = 8}
+universities %>%
+  left_join(cities, by = "city") %>% 
+  draw_table()
+```
+
+## Right Join
+
+```{r results = 'hide'}
+universities %>%
+  right_join(cities, by = "city")
+```
+
+```{r echo = FALSE, fig.height = 2, fig.width = 8}
+universities %>%
+  right_join(cities, by = "city") %>% 
+  draw_table()
+```
+
+## Inner Join
+
+```{r results = 'hide'}
+universities %>%
+  inner_join(cities, by = "city")
+```
+
+```{r echo = FALSE, fig.height = 1.6, fig.width = 8}
+universities %>%
+  inner_join(cities, by = "city") %>% 
+  draw_table()
+```
+
+## Full Join
+
+```{r results = 'hide'}
+universities %>%
+  full_join(cities, by = "city")
+```
+
+```{r echo = FALSE, fig.height = 2.4, fig.width = 8}
+universities %>%
+  full_join(cities, by = "city") %>% 
+  draw_table()
+```
+
+## Different Column Names
+
+In the previous example both our datasets included a column named `city`. But what if the names of the columns in the two datasets were not the same? For example, let's take a look at the `states` table:
+
+```{r echo = FALSE, fig.height = 2, fig.width = 8}
+states %>% 
+  draw_table("states")
+```
+
+What if we were to merge the `cities` dataset with `states`?
+
+```{r echo = FALSE, fig.height = 2, fig.width = 8}
+grid.arrange(draw_table(cities, "cities"), draw_table(states, "states"), ncol = 2)
+```
+
+One option would be to rename the columns so their names would match, but you don't really need to do that. You can simply tell the join functions the mapping between the different names.
+
+```{r results = 'hide'}
+cities %>%
+  left_join(states, by = c("state" = "statename"))
+```
+
+In the above example, we're telling `left_join()` to merge using the `state` column from the `cities` data frame and `statename` column from the `states` data frame.
+
+```{r echo = FALSE, fig.height = 2, fig.width = 8}
+left_join(cities, states, by = c("state" = "statename")) %>%
+  draw_table()
+```
+
+## Exercise
+
+1. Load the following datasets:
+
+    ```{r message=FALSE}
+    presidents <- read_csv("https://raw.githubusercontent.com/altaf-ali/tidydata_tutorial/master/data/presidents.csv")
+    presidents_home <- read_csv("https://raw.githubusercontent.com/altaf-ali/tidydata_tutorial/master/data/presidents_home.csv")
+    ```
+
+    The datasets include names of U.S. presidents:
+  
+    ```{r echo = FALSE, fig.height = 2.5, fig.width = 8}
+    presidents %>%
+      draw_table("presidents")
+    ```
+  
+    ```{r echo = FALSE, fig.height = 2.5, fig.width = 8}
+    presidents_home %>%
+      draw_table("presidents_home")
+    ```
+
+1. Merge the two datasets so that it ONLY includes observations that exist in BOTH the datasets. There should be no missing values or `NA` in the merged table. The results should match the following:
+
+    ```{r echo = FALSE, fig.height = 2, fig.width = 8}
+    inner_join(presidents, presidents_home, by = c("First" = "GivenName", "Middle", "Last" = "Surname")) %>%
+      draw_table()
+    ```
+
+1. Merge the two datasets so that it includes ALL the observations from both the datasets. Some `TookOffice, LeftOffice` and `HomeState` values will be `NA` and that's ok. The results should match the following:
+
+    ```{r echo = FALSE, fig.height = 3, fig.width = 8}
+    full_join(presidents, presidents_home, by = c("First" = "GivenName", "Middle", "Last" = "Surname")) %>%
+      draw_table()
+    ```
+
+1. Merge the two datasets so that ALL observations from the `presidents` datasets are included. Some `HomeState` values will be `NA` and that's ok. The results should match the following:
+
+    ```{r echo = FALSE, fig.height = 2.5, fig.width = 8}
+    left_join(presidents, presidents_home, by = c("First" = "GivenName", "Middle", "Last" = "Surname")) %>%
+      draw_table()
+    ```
+
+1. Merge the two datasets so that ALL observations from the `presidents_home` datasets are included. Some `TookOffice` and `LeftOffice` values will be `NA` and that's ok. The results should match the following:
+
+    ```{r echo = FALSE, fig.height = 2.5, fig.width = 8}
+    right_join(presidents, presidents_home, by = c("First" = "GivenName", "Middle", "Last" = "Surname")) %>%
+      draw_table()
+    ```

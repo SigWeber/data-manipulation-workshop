@@ -1,5 +1,5 @@
 ---
-title: "A Book"
+title: "Data manipulation in R"
 author: "Sigrid Weber"
 site: bookdown::bookdown_site
 documentclass: book
@@ -7,12 +7,5 @@ output:
   bookdown::gitbook: default
   bookdown::pdf_book: default
 ---
-#github-repo: SigWeber/data_manipulation_with_R
 
-# Hello World
-
-Hi.
-
-Bye.
-
-<!-- If you need PDF output, uncomment bookdown::pdf_book above in YAML. You will need a LaTeX installation, e.g., https://yihui.name/tinytex/ -->
+# Data manipulation in R
