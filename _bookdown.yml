@@ -3,4 +3,6 @@ book_filename: data_manipulation_with_R.Rmd
 
 rmd_files:
   - index.Rmd
-  - intro.Rmd
+  - resources.Rmd
+  - getting_started.Rmd
+  - basic_operations.Rmd
