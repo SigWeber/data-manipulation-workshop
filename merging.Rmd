@@ -24,9 +24,9 @@ source("R/draw_table.R")
 Next, we load three datasets of universities, cities, and states.
 
 ```{r message=FALSE}
-universities <- read_csv("https://raw.githubusercontent.com/SigWeber/data_manipulation_with_R//master/data/universities.csv")
-cities <- read_csv("https://raw.githubusercontent.com/SigWeber/data_manipulation_with_R//master/data/cities.csv")
-states <- read_csv("https://raw.githubusercontent.com/SigWeber/data_manipulation_with_R//master/data/states.csv")
+universities <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/universities.csv")
+cities <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/cities.csv")
+states <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/states.csv")
 ```
 
 Let's see how we can merge the `universities` dataset with the `cities` dataset.
