@@ -29,7 +29,7 @@ This workshop relies on three packages: `dplyr`, `tidyr`, and `readr`. There are
 
 You can either install these two packages individually or use `tidyverse`. The `tidyverse` package is a collection of packages used for data manipulation and visualization. In addition to `dplyr`, `tidyr`, and `readr`, it also includes the following:
 
-```{r echo = FALSE}
+```{r echo = FALSE,warning=FALSE,message=FALSE}
 tidyverse::tidyverse_packages()
 ```
 

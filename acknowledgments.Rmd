@@ -2,6 +2,7 @@
 
 Content of this workshop is based on the following:
 
+- [Altaf Ali's tutorial last year](https://altaf-ali.github.io/tidydata_tutorial/)
 - [Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
 - [Data manipulation with dplyr, 2014](http://bit.ly/hadley_dplyr_tutorial_2014)
 - [Hands-on dplyr tutorial for faster data manipulation in R](https://www.r-bloggers.com/hands-on-dplyr-tutorial-for-faster-data-manipulation-in-r)

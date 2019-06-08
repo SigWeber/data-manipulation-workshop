@@ -121,8 +121,8 @@ left_join(cities, states, by = c("state" = "statename")) %>%
 1. Load the following datasets:
 
     ```{r message=FALSE}
-    presidents <- read_csv("https://raw.githubusercontent.com/altaf-ali/tidydata_tutorial/master/data/presidents.csv")
-    presidents_home <- read_csv("https://raw.githubusercontent.com/altaf-ali/tidydata_tutorial/master/data/presidents_home.csv")
+    presidents <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/presidents.csv")
+    presidents_home <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/presidents_home.csv")
     ```
 
     The datasets include names of U.S. presidents:

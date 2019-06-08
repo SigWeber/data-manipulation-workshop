@@ -32,7 +32,6 @@ We're using a dataset of flight departures from Houston in 2011.
 | airports.csv | Metadata for airports |
 
 We're going to use the `readr` package which provides improved functions for reading datasets from files. Instead of the usual `read.csv()` function, we'll use the `read_csv()` function from `readr`.
-https://github.com/SigWeber/data-manipulation-workshop/blob/master/data/flights.csv
 
 ```{r message = FALSE}
 flights <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/flights.csv")
@@ -241,11 +240,8 @@ delays
 
 1. What's wrong with the results above, and how would you fix the problem?
 1. Can you think of using filter to solve the problem?
-1. Use help to find out two other ways to do summarize/n combination in dplyr.
 1. How many different destinations can you fly to from Houston?
 1. Which destinations have the highest average delays?
-1. Which flights (carrier + flight number) happen everyday and where do they fly?
-1. How do delays (of non-cancelled flights) vary over the course of a day? 
 
 ## Unite
 

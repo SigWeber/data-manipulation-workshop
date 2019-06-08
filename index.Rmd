@@ -12,3 +12,18 @@ output:
         all: []
   bookdown::pdf_book: default
 ---
+
+# Introduction
+
+Data manipulation - or the process of cleaning, organising and preparing your data for further analysis - is required for most projects involving real-world datasets. This workshop teaches you how to use R to manipulate raw data and prepare it for analysis. We will cover the following topics:
+
+* The grammar of data manipulation
+* Merging multiple datasets
+* Creating subsets of data using filters
+* Reshaping data between long and wide formats
+* Summarising data with group-wise operation
+* Setting up data pipelines in dplyr for efficient data manipulation
+
+
+The workshop is designed for individuals who are already familiar with R but wish to learn efficient techniques for data manipulation. Ideally, you bring your own laptop with the latest version of R and RStudio installed.
+
