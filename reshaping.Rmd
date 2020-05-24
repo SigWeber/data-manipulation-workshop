@@ -57,7 +57,7 @@ wdi %>%
 
 That looks already but we still have to tackle our main task: how do we get all data entries for different years into one row instead of 3 columns? We want to put all etnries in the columns starting with an X to be below each other. The function to achieve this is *pivot_longer()*. All we have to do is to specify the data and to select the columns we want to reformat. However, we still want to know which value of the world development index was achieved in which year. So, we also tell this to the function: 
 
-```{r echo = FALSE}
+```{r }
 wdi %>%
   filter(Country.Code != "") %>% 
     select(-Series.Code) %>%
@@ -71,7 +71,7 @@ Thats already pretty close. The Year column looks ugly but that's an easy fix. W
 
 Since this is the last step we might as well assign the results to a new dataset.
 
-```{r echo = FALSE}
+```{r }
 wdi_long <- wdi %>%
   filter(Country.Code != "") %>% 
     select(-Series.Code) %>%
