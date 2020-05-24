@@ -1,5 +1,5 @@
 ---
-title: "Data manipulation in R"
+title: "Data manipulation in R (online workshop)"
 author: "Sigrid Weber"
 site: bookdown::bookdown_site
 documentclass: book
@@ -25,5 +25,5 @@ Data manipulation - or the process of cleaning, organising and preparing your da
 * Setting up data pipelines in dplyr for efficient data manipulation
 
 
-The workshop is designed for individuals who are already familiar with R but wish to learn efficient techniques for data manipulation. Ideally, you bring your own laptop with the latest version of R and RStudio installed.
+The workshop is designed for individuals who are already familiar with R but wish to learn efficient techniques for data manipulation. The workshop will be a combination of coding demonstrations by me and excercises for you to try on your own computer. Ideally, you make sure that R and RStudio are installed. You may also want to install the package *tidyverse*. Instructions how to do so can be found in the section *3 Getting started*.
 
