@@ -130,12 +130,19 @@ Find all flights that match the following conditions:
 
 1. To SFO or OAK
 1. In January
-1. Delayed by more than an hour
-1. Departed between midnight and 5am
-1. Arrival delay more than twice the departure delay
+1. Delayed departure by more than an hour
+1. Departure delay more than twice the arrival delay
 
 Here's a brief summary of operators you can use:
 
+```{r include = FALSE}
+flights %>% 
+filter(dest %in% c("SFO","OAK")) %>% 
+filter(date>="2011-01-01" & date <= "2011-01-31") %>% 
+filter(dep_delay > 60) %>% 
+filter(dep_delay / arr_delay > 2)
+```
+ 
 **Comparison Operators**
 
 ```{r echo = FALSE}
@@ -185,8 +192,24 @@ flights %>%
 ### Exercise
 
 1. Order flights by departure date and time
+```{r include =FALSE}
+flights %>% 
+  arrange(date,time)
+```
+
 1. Which flights were most delayed?
+```{r include =FALSE}
+flights %>% 
+  arrange(-arr_delay)
+```
+
 1. Which flights caught up the most time during flight?
+```{r include = FALSE}
+flights %>% 
+  arrange(- (dep_delay - arr_delay))
+
+```
+
 
 ## Mutate
 
@@ -204,6 +227,13 @@ flights <- flights %>%
 ### Exercise
 
 1. Add a variable to show how much time was made up (or lost) during flight
+
+```{r include = FALSE}
+flights %>% 
+  mutate(delay_difference = dep_delay - arr_delay ) %>% 
+  arrange(-delay_difference)
+
+```
 
 ## Summarise
 
@@ -239,9 +269,46 @@ delays
 ### Exercise
 
 1. What's wrong with the results above, and how would you fix the problem?
+
+```{r, include = FALSE}
+
+# too many NAs !!!
+
+delays <- flights %>%
+    group_by(dest) %>%
+    summarise(mean = mean(dep_delay,na.rm=T))
+
+delays
+```
+
 1. Can you think of using filter to solve the problem?
+```{r, include = FALSE}
+
+delays <- flights %>%
+  filter(!is.na(dep_delay)) %>%  # OR: filter(is.na(dep_delay)==F)
+  group_by(dest) %>%
+  summarise(mean = mean(dep_delay))
+
+delays
+```
+
 1. How many different destinations can you fly to from Houston?
+```{r include = FALSE}
+flights %>% 
+  filter(origin == "HOU") %>%
+  group_by(dest) %>%
+  summarise(count = n()) %>% 
+  nrow()
+```
+
 1. Which destinations have the highest average delays?
+```{r include = FALSE}
+flights %>% 
+  group_by(dest) %>%
+  summarise(mean_delay = mean(arr_delay,na.rm = T)) %>% 
+  arrange(-mean_delay)
+```
+
 
 ## Unite
 
@@ -265,7 +332,18 @@ flights %>%
 ### Exercise
 
 1. Split the `date` column into `year`, `month`, and `day` columns
+```{r include =F}
+flights %>%
+  separate(date, c("date", "time"), sep = " ") %>% 
+  separate(date, c("day", "month","year"), sep = "/")
+```
+
 1. Ensure that the `year`, `month`, and `day` columns are of type *integer* (NOT *character*)
     - HINT: Use online help for `separate` for an easy way to do this
-    
+```{r include =F}
+flights %>%
+  separate(date, c("date", "time"), sep = " ") %>% 
+  separate(date, c("day", "month","year"), sep = "/",convert = T) %>% str()
+```
+
     
