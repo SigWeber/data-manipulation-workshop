@@ -35,18 +35,14 @@ We're going to use the `readr` package which provides improved functions for rea
 
 ```{r message = FALSE}
 flights <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/flights.csv")
-weather <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/weather.csv")
-planes <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/planes.csv")
-airports <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/airports.csv")
+
 ```
 
 Now let's examine the dataset
 
 ```{r}
 flights
-weather
-planes
-airports
+
 ```
 
 Notice that because we used `read_csv()`, the data frame we received now prints nicely without having to use the `head()` function and does not clutter your screen.
