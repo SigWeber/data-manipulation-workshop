@@ -56,6 +56,8 @@ The `select` function is used to select columns.
 ```{r}
 flights %>%
   select(dest, time, dist)
+
+flights$dest
 ```
 
 Add the arrival delay (`arr_delay`) and departure delay (`dep_delay`) columns as well.
@@ -116,6 +118,7 @@ Now let's do the filter first and then select the columns
 flights %>%
   filter(dest == "BOS") %>%
   select(dest, time, dist) 
+
 ```
 
 In this case the order doesn't matter, but when using pipes make sure you understand that each function is executed in sequence and the results are then fed to the next one.
@@ -129,16 +132,16 @@ Find all flights that match the following conditions:
 1. Delayed departure by more than an hour
 1. Departure delay more than twice the arrival delay
 
-Here's a brief summary of operators you can use:
-
 ```{r include = FALSE}
 flights %>% 
 filter(dest %in% c("SFO","OAK")) %>% 
-filter(date>="2011-01-01" & date <= "2011-01-31") %>% 
+filter(grepl(date, pattern ="01/2011")) %>% 
 filter(dep_delay > 60) %>% 
 filter(dep_delay / arr_delay > 2)
 ```
  
+Here's a brief summary of operators you can use:
+
 **Comparison Operators**
 
 ```{r echo = FALSE}
@@ -216,6 +219,9 @@ Up until now we've only been examining the dataset but haven't made any changes 
 In this exercise we're adding a new variable to an existing dataframe so we'll just overwrite the `flights` variable with the one that has a `speed` column
 
 ```{r}
+
+flights$speed <- flights$dist / (flights$time/60)
+  
 flights <- flights %>%
   mutate(speed = dist / (time / 60))
 ```
@@ -248,6 +254,7 @@ flights %>%
   group_by(date) %>%
   summarise(count = n()) %>%
   View()
+
 ```
 
 Of course, often times we'd want to save the summary in a variable for further analysis.
