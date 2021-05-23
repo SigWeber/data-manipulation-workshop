@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Reshaping | Data manipulation in R (online workshop)</title>
   <meta name="description" content="6 Reshaping | Data manipulation in R (online workshop)" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Reshaping | Data manipulation in R (online workshop)" />
   <meta property="og:type" content="book" />
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="merging-datasets.html"/>
 <link rel="next" href="acknowledgments.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,25 +53,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -128,38 +130,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>2</b> Resources</a></li>
-<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a><ul>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting Started</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#software-requirements"><i class="fa fa-check"></i><b>3.2</b> Software Requirements</a><ul>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#software-requirements"><i class="fa fa-check"></i><b>3.2</b> Software Requirements</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="getting-started.html"><a href="getting-started.html#r-and-rstudio"><i class="fa fa-check"></i><b>3.2.1</b> R and RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#required-packages"><i class="fa fa-check"></i><b>3.3</b> Required Packages</a><ul>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#required-packages"><i class="fa fa-check"></i><b>3.3</b> Required Packages</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#option-1-use-tidyverse"><i class="fa fa-check"></i><b>3.3.1</b> Option 1: Use <code>tidyverse</code></a></li>
 <li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#option-2-install-individual-packages"><i class="fa fa-check"></i><b>3.3.2</b> Option 2: Install Individual Packages</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="basic-operations.html"><a href="basic-operations.html"><i class="fa fa-check"></i><b>4</b> Basic Operations</a><ul>
+<li class="chapter" data-level="4" data-path="basic-operations.html"><a href="basic-operations.html"><i class="fa fa-check"></i><b>4</b> Basic Operations</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="basic-operations.html"><a href="basic-operations.html#data-pipelines"><i class="fa fa-check"></i><b>4.1</b> Data pipelines</a></li>
 <li class="chapter" data-level="4.2" data-path="basic-operations.html"><a href="basic-operations.html#dataset"><i class="fa fa-check"></i><b>4.2</b> Dataset</a></li>
 <li class="chapter" data-level="4.3" data-path="basic-operations.html"><a href="basic-operations.html#select"><i class="fa fa-check"></i><b>4.3</b> Select</a></li>
-<li class="chapter" data-level="4.4" data-path="basic-operations.html"><a href="basic-operations.html#filter"><i class="fa fa-check"></i><b>4.4</b> Filter</a><ul>
+<li class="chapter" data-level="4.4" data-path="basic-operations.html"><a href="basic-operations.html#filter"><i class="fa fa-check"></i><b>4.4</b> Filter</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="basic-operations.html"><a href="basic-operations.html#exercise"><i class="fa fa-check"></i><b>4.4.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="basic-operations.html"><a href="basic-operations.html#arrange"><i class="fa fa-check"></i><b>4.5</b> Arrange</a><ul>
+<li class="chapter" data-level="4.5" data-path="basic-operations.html"><a href="basic-operations.html#arrange"><i class="fa fa-check"></i><b>4.5</b> Arrange</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="basic-operations.html"><a href="basic-operations.html#exercise-1"><i class="fa fa-check"></i><b>4.5.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="basic-operations.html"><a href="basic-operations.html#mutate"><i class="fa fa-check"></i><b>4.6</b> Mutate</a><ul>
+<li class="chapter" data-level="4.6" data-path="basic-operations.html"><a href="basic-operations.html#mutate"><i class="fa fa-check"></i><b>4.6</b> Mutate</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="basic-operations.html"><a href="basic-operations.html#exercise-2"><i class="fa fa-check"></i><b>4.6.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="basic-operations.html"><a href="basic-operations.html#summarise"><i class="fa fa-check"></i><b>4.7</b> Summarise</a><ul>
+<li class="chapter" data-level="4.7" data-path="basic-operations.html"><a href="basic-operations.html#summarise"><i class="fa fa-check"></i><b>4.7</b> Summarise</a>
+<ul>
 <li class="chapter" data-level="4.7.1" data-path="basic-operations.html"><a href="basic-operations.html#exercise-3"><i class="fa fa-check"></i><b>4.7.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="4.8" data-path="basic-operations.html"><a href="basic-operations.html#unite"><i class="fa fa-check"></i><b>4.8</b> Unite</a></li>
-<li class="chapter" data-level="4.9" data-path="basic-operations.html"><a href="basic-operations.html#separate"><i class="fa fa-check"></i><b>4.9</b> Separate</a><ul>
+<li class="chapter" data-level="4.9" data-path="basic-operations.html"><a href="basic-operations.html#separate"><i class="fa fa-check"></i><b>4.9</b> Separate</a>
+<ul>
 <li class="chapter" data-level="4.9.1" data-path="basic-operations.html"><a href="basic-operations.html#exercise-4"><i class="fa fa-check"></i><b>4.9.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>5</b> Merging Datasets</a><ul>
+<li class="chapter" data-level="5" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>5</b> Merging Datasets</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="merging-datasets.html"><a href="merging-datasets.html#left-join"><i class="fa fa-check"></i><b>5.1</b> Left Join</a></li>
 <li class="chapter" data-level="5.2" data-path="merging-datasets.html"><a href="merging-datasets.html#right-join"><i class="fa fa-check"></i><b>5.2</b> Right Join</a></li>
 <li class="chapter" data-level="5.3" data-path="merging-datasets.html"><a href="merging-datasets.html#inner-join"><i class="fa fa-check"></i><b>5.3</b> Inner Join</a></li>
@@ -186,25 +198,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reshaping" class="section level1">
+<div id="reshaping" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Reshaping</h1>
 <p>It’s fairly common for datasets from public sources to come in formats that need to be reshaped. The World Development Indicators (WDI) is one such dataset that requires reshaping before we can analyse it. Let’s go over the steps to see how we can reshape the WDI dataset.</p>
 <p>Let’s start by loading the <code>tidyverse</code> package first.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="reshaping.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>Clear everything to make sure there’s nothing leftover in our environment</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="reshaping.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
 <p>We’re using a small sample of the WDI dataset here to simplify the tasks. Let’s load the dataset and see what it looks like.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">wdi &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/wdi.csv&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;..&quot;</span>)</a>
-<a class="sourceLine" id="cb56-2" title="2"></a>
-<a class="sourceLine" id="cb56-3" title="3">wdi</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="reshaping.html#cb57-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/wdi.csv&quot;</span>, <span class="at">na =</span> <span class="st">&quot;..&quot;</span>)</span>
+<span id="cb57-2"><a href="reshaping.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="reshaping.html#cb57-3" aria-hidden="true" tabindex="-1"></a>wdi</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 7
-##   `¬Series.Name`   Series.Code  Country.Name Country.Code X1995.YR1995 X2000.YR2000 X2005.YR2005
-##   &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Maternal mortal~ SH.STA.MMRT  &quot;France&quot;     &quot;FRA&quot;               15           12           10   
-## 2 Maternal mortal~ SH.STA.MMRT  &quot;Spain&quot;      &quot;ESP&quot;                6            5            5   
-## 3 Maternal mortal~ SH.STA.MMRT  &quot;&quot;           &quot;&quot;                  NA           NA           NA   
-## 4 Health expendit~ SH.XPD.TOTL~ &quot;France&quot;     &quot;FRA&quot;               10.4         10.1         10.9 
-## 5 Health expendit~ SH.XPD.TOTL~ &quot;Spain&quot;      &quot;ESP&quot;                7.44         7.21         8.29</code></pre>
+##   `¬Series.Name` Series.Code Country.Name Country.Code X1995.YR1995 X2000.YR2000
+##   &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Maternal mort~ SH.STA.MMRT &quot;France&quot;     &quot;FRA&quot;               15           12   
+## 2 Maternal mort~ SH.STA.MMRT &quot;Spain&quot;      &quot;ESP&quot;                6            5   
+## 3 Maternal mort~ SH.STA.MMRT &quot;&quot;           &quot;&quot;                  NA           NA   
+## 4 Health expend~ SH.XPD.TOT~ &quot;France&quot;     &quot;FRA&quot;               10.4         10.1 
+## 5 Health expend~ SH.XPD.TOT~ &quot;Spain&quot;      &quot;ESP&quot;                7.44         7.21
+## # ... with 1 more variable: X2005.YR2005 &lt;dbl&gt;</code></pre>
 <p>But ideally, we’d like our data to look something like this:</p>
 <pre><code>## # A tibble: 12 x 5
 ##    Indicator          Country.Name Country.Code  Year Development.Index
@@ -223,36 +236,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 12 Health expenditure Spain        ESP           2005              8.29</code></pre>
 <p>So, what do we do to achieve this new data format? Note: We want to move away from a <strong>wide</strong> data frame to a <strong>long</strong> data frame!</p>
 <p>Step 1: We can see that some country names and codes are blank, so let’s get rid of them first</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">wdi <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb59-2" title="2"><span class="st">  </span><span class="kw">filter</span>(Country.Code <span class="op">!=</span><span class="st"> &quot;&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="reshaping.html#cb60-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a href="reshaping.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country.Code <span class="sc">!=</span>  <span class="st">&quot;&quot;</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 4 x 7
-##   `¬Series.Name`   Series.Code  Country.Name Country.Code X1995.YR1995 X2000.YR2000 X2005.YR2005
-##   &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Maternal mortal~ SH.STA.MMRT  France       FRA                 15           12           10   
-## 2 Maternal mortal~ SH.STA.MMRT  Spain        ESP                  6            5            5   
-## 3 Health expendit~ SH.XPD.TOTL~ France       FRA                 10.4         10.1         10.9 
-## 4 Health expendit~ SH.XPD.TOTL~ Spain        ESP                  7.44         7.21         8.29</code></pre>
+##   `¬Series.Name` Series.Code Country.Name Country.Code X1995.YR1995 X2000.YR2000
+##   &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Maternal mort~ SH.STA.MMRT France       FRA                 15           12   
+## 2 Maternal mort~ SH.STA.MMRT Spain        ESP                  6            5   
+## 3 Health expend~ SH.XPD.TOT~ France       FRA                 10.4         10.1 
+## 4 Health expend~ SH.XPD.TOT~ Spain        ESP                  7.44         7.21
+## # ... with 1 more variable: X2005.YR2005 &lt;dbl&gt;</code></pre>
 <p>So far so good. Note that we’re not making any changes yet so we can just add one function at a time to the pipeline and check the results. Once we’re satisfied with the results we save them to a variable.</p>
 <p>Step 2: The dataset contains maternal mortality and health expenditure rates but I really don’t like the variable names and what use do I have for the series code? I want to rename and exclude some variables!</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">wdi <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-2" title="2"><span class="st">  </span><span class="kw">filter</span>(Country.Code <span class="op">!=</span><span class="st"> &quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb61-3" title="3"><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>Series.Code) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-4" title="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Indicator =</span> <span class="st">`</span><span class="dt">¬Series.Name</span><span class="st">`</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="reshaping.html#cb62-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="sc">%&gt;%</span></span>
+<span id="cb62-2"><a href="reshaping.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country.Code <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb62-3"><a href="reshaping.html#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>Series.Code) <span class="sc">%&gt;%</span></span>
+<span id="cb62-4"><a href="reshaping.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Indicator =</span> <span class="st">`</span><span class="at">¬Series.Name</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 6
-##   Indicator          Country.Name Country.Code X1995.YR1995 X2000.YR2000 X2005.YR2005
-##   &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Maternal mortality France       FRA                 15           12           10   
-## 2 Maternal mortality Spain        ESP                  6            5            5   
-## 3 Health expenditure France       FRA                 10.4         10.1         10.9 
-## 4 Health expenditure Spain        ESP                  7.44         7.21         8.29</code></pre>
+##   Indicator     Country.Name Country.Code X1995.YR1995 X2000.YR2000 X2005.YR2005
+##   &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Maternal mor~ France       FRA                 15           12           10   
+## 2 Maternal mor~ Spain        ESP                  6            5            5   
+## 3 Health expen~ France       FRA                 10.4         10.1         10.9 
+## 4 Health expen~ Spain        ESP                  7.44         7.21         8.29</code></pre>
 <p>That looks already but we still have to tackle our main task: how do we get all data entries for different years into one row instead of 3 columns? We want to put all etnries in the columns starting with an X to be below each other. The function to achieve this is <em>pivot_longer()</em>. All we have to do is to specify the data and to select the columns we want to reformat. However, we still want to know which value of the world development index was achieved in which year. So, we also tell this to the function:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">wdi <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-2" title="2"><span class="st">  </span><span class="kw">filter</span>(Country.Code <span class="op">!=</span><span class="st"> &quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb63-3" title="3"><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>Series.Code) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-4" title="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Indicator =</span> <span class="st">`</span><span class="dt">¬Series.Name</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb63-5" title="5"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">starts_with</span>(<span class="st">&quot;X&quot;</span>),</a>
-<a class="sourceLine" id="cb63-6" title="6">               <span class="dt">names_to =</span> <span class="st">&quot;Year&quot;</span>,</a>
-<a class="sourceLine" id="cb63-7" title="7">               <span class="dt">values_to =</span> <span class="st">&quot;Development.Index&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="reshaping.html#cb64-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="sc">%&gt;%</span></span>
+<span id="cb64-2"><a href="reshaping.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country.Code <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-3"><a href="reshaping.html#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>Series.Code) <span class="sc">%&gt;%</span></span>
+<span id="cb64-4"><a href="reshaping.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Indicator =</span> <span class="st">`</span><span class="at">¬Series.Name</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-5"><a href="reshaping.html#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;X&quot;</span>),</span>
+<span id="cb64-6"><a href="reshaping.html#cb64-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb64-7"><a href="reshaping.html#cb64-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Development.Index&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 5
 ##    Indicator          Country.Name Country.Code Year         Development.Index
 ##    &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;                    &lt;dbl&gt;
@@ -270,16 +284,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 12 Health expenditure Spain        ESP          X2005.YR2005              8.29</code></pre>
 <p>Thats already pretty close. The Year column looks ugly but that’s an easy fix. We can use the <code>substring()</code> function to take all the characters from position <code>2</code> to <code>5</code> and assign it back to the <code>Year</code> column.</p>
 <p>Since this is the last step we might as well assign the results to a new dataset.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">wdi_long &lt;-<span class="st"> </span>wdi <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-2" title="2"><span class="st">  </span><span class="kw">filter</span>(Country.Code <span class="op">!=</span><span class="st"> &quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb65-3" title="3"><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>Series.Code) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-4" title="4"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Indicator =</span> <span class="st">`</span><span class="dt">¬Series.Name</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb65-5" title="5"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">starts_with</span>(<span class="st">&quot;X&quot;</span>),</a>
-<a class="sourceLine" id="cb65-6" title="6">               <span class="dt">names_to =</span> <span class="st">&quot;Year&quot;</span>,</a>
-<a class="sourceLine" id="cb65-7" title="7">               <span class="dt">values_to =</span> <span class="st">&quot;Development.Index&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb65-8" title="8"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Year =</span> <span class="kw">as.numeric</span>(<span class="kw">substring</span>(Year, <span class="dv">2</span>, <span class="dv">5</span>)))</a>
-<a class="sourceLine" id="cb65-9" title="9"></a>
-<a class="sourceLine" id="cb65-10" title="10">wdi_long</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="reshaping.html#cb66-1" aria-hidden="true" tabindex="-1"></a>wdi_long <span class="ot">&lt;-</span> wdi <span class="sc">%&gt;%</span></span>
+<span id="cb66-2"><a href="reshaping.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country.Code <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-3"><a href="reshaping.html#cb66-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>Series.Code) <span class="sc">%&gt;%</span></span>
+<span id="cb66-4"><a href="reshaping.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Indicator =</span> <span class="st">`</span><span class="at">¬Series.Name</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-5"><a href="reshaping.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;X&quot;</span>),</span>
+<span id="cb66-6"><a href="reshaping.html#cb66-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb66-7"><a href="reshaping.html#cb66-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Development.Index&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-8"><a href="reshaping.html#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">as.numeric</span>(<span class="fu">substring</span>(Year, <span class="dv">2</span>, <span class="dv">5</span>)))</span>
+<span id="cb66-9"><a href="reshaping.html#cb66-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-10"><a href="reshaping.html#cb66-10" aria-hidden="true" tabindex="-1"></a>wdi_long</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 5
 ##    Indicator          Country.Name Country.Code  Year Development.Index
 ##    &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;             &lt;dbl&gt;
