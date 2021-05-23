@@ -210,13 +210,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb57-2"><a href="reshaping.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-3"><a href="reshaping.html#cb57-3" aria-hidden="true" tabindex="-1"></a>wdi</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 7
-##   `¬Series.Name` Series.Code Country.Name Country.Code X1995.YR1995 X2000.YR2000
-##   &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Maternal mort~ SH.STA.MMRT &quot;France&quot;     &quot;FRA&quot;               15           12   
-## 2 Maternal mort~ SH.STA.MMRT &quot;Spain&quot;      &quot;ESP&quot;                6            5   
-## 3 Maternal mort~ SH.STA.MMRT &quot;&quot;           &quot;&quot;                  NA           NA   
-## 4 Health expend~ SH.XPD.TOT~ &quot;France&quot;     &quot;FRA&quot;               10.4         10.1 
-## 5 Health expend~ SH.XPD.TOT~ &quot;Spain&quot;      &quot;ESP&quot;                7.44         7.21
+##   `¬Series.Name`     Series.Code    Country.Name Country.Code X1995.YR1995 X2000.YR2000
+##   &lt;chr&gt;              &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Maternal mortality SH.STA.MMRT    &quot;France&quot;     &quot;FRA&quot;               15           12   
+## 2 Maternal mortality SH.STA.MMRT    &quot;Spain&quot;      &quot;ESP&quot;                6            5   
+## 3 Maternal mortality SH.STA.MMRT    &quot;&quot;           &quot;&quot;                  NA           NA   
+## 4 Health expenditure SH.XPD.TOTL.ZS &quot;France&quot;     &quot;FRA&quot;               10.4         10.1 
+## 5 Health expenditure SH.XPD.TOTL.ZS &quot;Spain&quot;      &quot;ESP&quot;                7.44         7.21
 ## # ... with 1 more variable: X2005.YR2005 &lt;dbl&gt;</code></pre>
 <p>But ideally, we’d like our data to look something like this:</p>
 <pre><code>## # A tibble: 12 x 5
@@ -239,12 +239,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="reshaping.html#cb60-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="sc">%&gt;%</span></span>
 <span id="cb60-2"><a href="reshaping.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country.Code <span class="sc">!=</span>  <span class="st">&quot;&quot;</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 4 x 7
-##   `¬Series.Name` Series.Code Country.Name Country.Code X1995.YR1995 X2000.YR2000
-##   &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Maternal mort~ SH.STA.MMRT France       FRA                 15           12   
-## 2 Maternal mort~ SH.STA.MMRT Spain        ESP                  6            5   
-## 3 Health expend~ SH.XPD.TOT~ France       FRA                 10.4         10.1 
-## 4 Health expend~ SH.XPD.TOT~ Spain        ESP                  7.44         7.21
+##   `¬Series.Name`     Series.Code    Country.Name Country.Code X1995.YR1995 X2000.YR2000
+##   &lt;chr&gt;              &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Maternal mortality SH.STA.MMRT    France       FRA                 15           12   
+## 2 Maternal mortality SH.STA.MMRT    Spain        ESP                  6            5   
+## 3 Health expenditure SH.XPD.TOTL.ZS France       FRA                 10.4         10.1 
+## 4 Health expenditure SH.XPD.TOTL.ZS Spain        ESP                  7.44         7.21
 ## # ... with 1 more variable: X2005.YR2005 &lt;dbl&gt;</code></pre>
 <p>So far so good. Note that we’re not making any changes yet so we can just add one function at a time to the pipeline and check the results. Once we’re satisfied with the results we save them to a variable.</p>
 <p>Step 2: The dataset contains maternal mortality and health expenditure rates but I really don’t like the variable names and what use do I have for the series code? I want to rename and exclude some variables!</p>
@@ -253,12 +253,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-3"><a href="reshaping.html#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>Series.Code) <span class="sc">%&gt;%</span></span>
 <span id="cb62-4"><a href="reshaping.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Indicator =</span> <span class="st">`</span><span class="at">¬Series.Name</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 6
-##   Indicator     Country.Name Country.Code X1995.YR1995 X2000.YR2000 X2005.YR2005
-##   &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Maternal mor~ France       FRA                 15           12           10   
-## 2 Maternal mor~ Spain        ESP                  6            5            5   
-## 3 Health expen~ France       FRA                 10.4         10.1         10.9 
-## 4 Health expen~ Spain        ESP                  7.44         7.21         8.29</code></pre>
+##   Indicator          Country.Name Country.Code X1995.YR1995 X2000.YR2000 X2005.YR2005
+##   &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Maternal mortality France       FRA                 15           12           10   
+## 2 Maternal mortality Spain        ESP                  6            5            5   
+## 3 Health expenditure France       FRA                 10.4         10.1         10.9 
+## 4 Health expenditure Spain        ESP                  7.44         7.21         8.29</code></pre>
 <p>That looks already but we still have to tackle our main task: how do we get all data entries for different years into one row instead of 3 columns? We want to put all etnries in the columns starting with an X to be below each other. The function to achieve this is <em>pivot_longer()</em>. All we have to do is to specify the data and to select the columns we want to reformat. However, we still want to know which value of the world development index was achieved in which year. So, we also tell this to the function:</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="reshaping.html#cb64-1" aria-hidden="true" tabindex="-1"></a>wdi <span class="sc">%&gt;%</span></span>
 <span id="cb64-2"><a href="reshaping.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country.Code <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
