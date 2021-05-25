@@ -214,44 +214,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s see how we can merge the <code>universities</code> dataset with the <code>cities</code> dataset.</p>
 <pre><code>## Warning: `data_frame()` was deprecated in tibble 1.1.0.
 ## Please use `tibble()` instead.</code></pre>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-46-1.png" width="768" /></p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-47-1.png" width="768" /></p>
 <div id="left-join" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Left Join</h2>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="merging-datasets.html#cb49-1" aria-hidden="true" tabindex="-1"></a>universities <span class="sc">%&gt;%</span></span>
 <span id="cb49-2"><a href="merging-datasets.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(cities, <span class="at">by =</span> <span class="st">&quot;city&quot;</span>)</span>
 <span id="cb49-3"><a href="merging-datasets.html#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-4"><a href="merging-datasets.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(universities,cities,<span class="at">by =</span> <span class="st">&quot;city&quot;</span>)</span></code></pre></div>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-48-1.png" width="768" /></p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-49-1.png" width="768" /></p>
 </div>
 <div id="right-join" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Right Join</h2>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="merging-datasets.html#cb50-1" aria-hidden="true" tabindex="-1"></a>universities <span class="sc">%&gt;%</span></span>
 <span id="cb50-2"><a href="merging-datasets.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(cities, <span class="at">by =</span> <span class="st">&quot;city&quot;</span>)</span></code></pre></div>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-50-1.png" width="768" /></p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-51-1.png" width="768" /></p>
 </div>
 <div id="inner-join" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Inner Join</h2>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="merging-datasets.html#cb51-1" aria-hidden="true" tabindex="-1"></a>universities <span class="sc">%&gt;%</span></span>
 <span id="cb51-2"><a href="merging-datasets.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(cities, <span class="at">by =</span> <span class="st">&quot;city&quot;</span>)</span></code></pre></div>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-52-1.png" width="768" /></p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-53-1.png" width="768" /></p>
 </div>
 <div id="full-join" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Full Join</h2>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="merging-datasets.html#cb52-1" aria-hidden="true" tabindex="-1"></a>universities <span class="sc">%&gt;%</span></span>
 <span id="cb52-2"><a href="merging-datasets.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(cities, <span class="at">by =</span> <span class="st">&quot;city&quot;</span>)</span></code></pre></div>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-54-1.png" width="768" /></p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-55-1.png" width="768" /></p>
 </div>
 <div id="different-column-names" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Different Column Names</h2>
 <p>In the previous example both our datasets included a column named <code>city</code>. But what if the names of the columns in the two datasets were not the same? For example, let’s take a look at the <code>states</code> table:</p>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-55-1.png" width="768" /></p>
-<p>What if we were to merge the <code>cities</code> dataset with <code>states</code>?</p>
 <p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-56-1.png" width="768" /></p>
+<p>What if we were to merge the <code>cities</code> dataset with <code>states</code>?</p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-57-1.png" width="768" /></p>
 <p>One option would be to rename the columns so their names would match, but you don’t really need to do that. You can simply tell the join functions the mapping between the different names.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="merging-datasets.html#cb53-1" aria-hidden="true" tabindex="-1"></a>cities <span class="sc">%&gt;%</span></span>
 <span id="cb53-2"><a href="merging-datasets.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(states, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;state&quot;</span> <span class="ot">=</span> <span class="st">&quot;statename&quot;</span>))</span></code></pre></div>
 <p>In the above example, we’re telling <code>left_join()</code> to merge using the <code>state</code> column from the <code>cities</code> data frame and <code>statename</code> column from the <code>states</code> data frame.</p>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-58-1.png" width="768" /></p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-59-1.png" width="768" /></p>
 </div>
 <div id="exercise-5" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Exercise</h2>
@@ -260,16 +260,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="merging-datasets.html#cb54-1" aria-hidden="true" tabindex="-1"></a>presidents <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/presidents.csv&quot;</span>)</span>
 <span id="cb54-2"><a href="merging-datasets.html#cb54-2" aria-hidden="true" tabindex="-1"></a>presidents_home <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/presidents_home.csv&quot;</span>)</span></code></pre></div>
 <p>The datasets include names of U.S. presidents:</p>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-60-1.png" width="768" /></p>
-<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-61-1.png" width="768" /></p></li>
-<li><p>Merge the two datasets so that it ONLY includes observations that exist in BOTH the datasets. There should be no missing values or <code>NA</code> in the merged table. The results should match the following:</p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-61-1.png" width="768" /></p>
 <p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-62-1.png" width="768" /></p></li>
-<li><p>Merge the two datasets so that it includes ALL the observations from both the datasets. Some <code>TookOffice, LeftOffice</code> and <code>HomeState</code> values will be <code>NA</code> and that’s ok. The results should match the following:</p>
+<li><p>Merge the two datasets so that it ONLY includes observations that exist in BOTH the datasets. There should be no missing values or <code>NA</code> in the merged table. The results should match the following:</p>
 <p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-63-1.png" width="768" /></p></li>
-<li><p>Merge the two datasets so that ALL observations from the <code>presidents</code> datasets are included. Some <code>HomeState</code> values will be <code>NA</code> and that’s ok. The results should match the following:</p>
+<li><p>Merge the two datasets so that it includes ALL the observations from both the datasets. Some <code>TookOffice, LeftOffice</code> and <code>HomeState</code> values will be <code>NA</code> and that’s ok. The results should match the following:</p>
 <p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-64-1.png" width="768" /></p></li>
-<li><p>Merge the two datasets so that ALL observations from the <code>presidents_home</code> datasets are included. Some <code>TookOffice</code> and <code>LeftOffice</code> values will be <code>NA</code> and that’s ok. The results should match the following:</p>
+<li><p>Merge the two datasets so that ALL observations from the <code>presidents</code> datasets are included. Some <code>HomeState</code> values will be <code>NA</code> and that’s ok. The results should match the following:</p>
 <p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-65-1.png" width="768" /></p></li>
+<li><p>Merge the two datasets so that ALL observations from the <code>presidents_home</code> datasets are included. Some <code>TookOffice</code> and <code>LeftOffice</code> values will be <code>NA</code> and that’s ok. The results should match the following:</p>
+<p><img src="data_manipulation_with_R_files/figure-html/unnamed-chunk-66-1.png" width="768" /></p></li>
 </ol>
 
 </div>
