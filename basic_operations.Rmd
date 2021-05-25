@@ -4,6 +4,7 @@ Let's start off by creating a new R script and loading `tidyverse`:
 
 ```{r message = FALSE}
 library(tidyverse)
+
 ```
 
 Clear everything to make sure there's nothing leftover in our environment
@@ -36,6 +37,7 @@ We're going to use the `readr` package which provides improved functions for rea
 ```{r message = FALSE}
 flights <- read_csv("https://raw.githubusercontent.com/SigWeber/data-manipulation-workshop/master/data/flights.csv")
 
+
 ```
 
 Now let's examine the dataset
@@ -57,7 +59,6 @@ The `select` function is used to select columns.
 flights %>%
   select(dest, time, dist)
 
-flights$dest
 ```
 
 Add the arrival delay (`arr_delay`) and departure delay (`dep_delay`) columns as well.
@@ -135,9 +136,10 @@ Find all flights that match the following conditions:
 ```{r include = FALSE}
 flights %>% 
 filter(dest %in% c("SFO","OAK")) %>% 
-filter(grepl(date, pattern ="01/2011")) %>% 
+filter(grepl(date, pattern = "01/2011")) %>% 
 filter(dep_delay > 60) %>% 
-filter(dep_delay / arr_delay > 2)
+filter(dep_delay > 2 * arr_delay)
+
 ```
  
 Here's a brief summary of operators you can use:
@@ -185,7 +187,7 @@ The `arrange()` function is used to sort the rows based on one or more columns
 
 ```{r}
 flights %>%
-  arrange(dest)
+  arrange(dest) %>% select(date,dest)
 ```
 
 ### Exercise
@@ -196,13 +198,13 @@ flights %>%
   arrange(date,time)
 ```
 
-1. Which flights were most delayed?
+2. Which flights were most delayed?
 ```{r include =FALSE}
 flights %>% 
   arrange(-arr_delay)
 ```
 
-1. Which flights caught up the most time during flight?
+3. Which flights caught up the most time during flight?
 ```{r include = FALSE}
 flights %>% 
   arrange(- (dep_delay - arr_delay))
@@ -216,14 +218,16 @@ The `mutate()` function is used to create new variables.
 
 Up until now we've only been examining the dataset but haven't made any changes to it. All our functions so far have simply displayed the results on screen but haven't created or modified existing variables. Let's see how we can create a new variable called `speed` based on the distance and duration in the flights dataframe.
 
-In this exercise we're adding a new variable to an existing dataframe so we'll just overwrite the `flights` variable with the one that has a `speed` column
+In this exercise we're adding a new variable to an existing dataframe so we'll just overwrite the `flights` dataframe with the one that has a `speed` column
 
 ```{r}
-
-flights$speed <- flights$dist / (flights$time/60)
-  
 flights <- flights %>%
   mutate(speed = dist / (time / 60))
+
+flights %>% 
+  select(speed)%>% 
+  arrange(speed)
+
 ```
 
 ### Exercise
@@ -231,10 +235,21 @@ flights <- flights %>%
 1. Add a variable to show how much time was made up (or lost) during flight
 
 ```{r include = FALSE}
-flights %>% 
-  mutate(delay_difference = dep_delay - arr_delay ) %>% 
-  arrange(-delay_difference)
+flights <- flights %>% 
+  mutate(delay_difference = dep_delay - arr_delay )
 
+flights %>% 
+  select(date,delay_difference) %>% 
+  arrange(-delay_difference)
+```
+
+2. Add a variable to identify all short flights that take less than one hour
+```{r include = FALSE}
+flights <- flights %>% 
+  mutate(short_flights = hour <= 0)
+
+flights %>% 
+  filter(short_flights==TRUE)
 ```
 
 ## Summarise
@@ -264,7 +279,7 @@ Let's find the average departure delay for each destination
 ```{r}
 delays <- flights %>%
     group_by(dest) %>%
-    summarise(mean = mean(dep_delay))
+    summarise(average_delay = mean(dep_delay))
 
 delays
 ```
@@ -288,7 +303,7 @@ delays
 ```{r, include = FALSE}
 
 delays <- flights %>%
-  filter(!is.na(dep_delay)) %>%  # OR: filter(is.na(dep_delay)==F)
+  filter(is.na(dep_delay)==FALSE) %>%  # OR: filter(is.na(dep_delay)==F)
   group_by(dest) %>%
   summarise(mean = mean(dep_delay))
 
@@ -332,21 +347,24 @@ flights %>%
   separate(date, c("date", "time"), sep = " ")
 ```
 
-### Exercise
+### Exercise 
 
 1. Split the `date` column into `year`, `month`, and `day` columns
+
 ```{r include =F}
 flights %>%
   separate(date, c("date", "time"), sep = " ") %>% 
   separate(date, c("day", "month","year"), sep = "/")
 ```
 
+
 1. Ensure that the `year`, `month`, and `day` columns are of type *integer* (NOT *character*)
     - HINT: Use online help for `separate` for an easy way to do this
 ```{r include =F}
 flights %>%
   separate(date, c("date", "time"), sep = " ") %>% 
-  separate(date, c("day", "month","year"), sep = "/",convert = T) %>% str()
+  separate(date, c("day", "month","year"), sep = "/",
+           convert = T) %>% str()
 ```
 
     
